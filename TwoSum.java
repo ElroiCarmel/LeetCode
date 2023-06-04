@@ -10,7 +10,7 @@ public class TwoSum {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = new int[] {3,2,4};
+		int[] nums = new int[] {3,3};
 		int[] ans = twoSum(nums, 6);
 		print(ans);
 	}
@@ -26,15 +26,16 @@ public class TwoSum {
 		for (int i=0; i<help.length-1; i++) { //O(n*log n)
 			int j = Arrays.binarySearch(help, i+1, help.length, target-help[i]);
 			if (j>0) {
-				int io = simpleSearch(nums, help[i]);
-				int jo = simpleSearch(nums, help[j]);
+				int io = simpleSearch(nums, help[i], -1);
+				int jo = simpleSearch(nums, help[j], io);
 				return new int[] {io,jo};
 			}
 		}
 		return new int[] {-1,-1};
 	}
-	public static int simpleSearch(int[] arr, int k) {
+	public static int simpleSearch(int[] arr, int k, int skip) {
 		for (int i=0;i<arr.length;i++) {
+			if (i==skip) continue;
 			if (arr[i]==k) return i;
 		}
 		return -1;
