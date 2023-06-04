@@ -12,8 +12,8 @@ public class TwoSum {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = new int[] {3,3};
-		int[] ans = twoSum(nums, 6);
+		int[] nums = new int[] {2,7,11,15};
+		int[] ans = twoSum(nums, 9);
 		print(ans);
 	}
 	/*
@@ -24,7 +24,7 @@ public class TwoSum {
 		for (int i=0; i<nums.length; i++) {
 			int diff = target-nums[i];
 			if (seen.get(diff)!=null) {
-				return new int[] {i, seen.get(diff)};
+				return new int[] {seen.get(diff), i};
 			}
 			seen.put(nums[i], i);
 		}
