@@ -1,4 +1,6 @@
+
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class TwoSum {
 	/*
@@ -15,31 +17,21 @@ public class TwoSum {
 		print(ans);
 	}
 	/*
-	 * 1. Sort the array
-	 * 2. For i element search the right couple for which
-	 *    nums[i] + nums[j] = target
-	 *    search in the range (i, last-element]
+	 * Using HashMap for better time-complexity
 	 */
 	public static int[] twoSum(int[] nums, int target) {
-		int[] help = nums.clone(); //O(n)
-		Arrays.sort(help); //O(n*log n)
-		for (int i=0; i<help.length-1; i++) { //O(n*log n)
-			int j = Arrays.binarySearch(help, i+1, help.length, target-help[i]);
-			if (j>0) {
-				int io = simpleSearch(nums, help[i], -1);
-				int jo = simpleSearch(nums, help[j], io);
-				return new int[] {io,jo};
+		HashMap<Integer,Integer> seen = new HashMap<Integer, Integer>();
+		for (int i=0; i<nums.length; i++) {
+			int diff = target-nums[i];
+			if (seen.get(diff)!=null) {
+				return new int[] {i, seen.get(diff)};
 			}
+			seen.put(nums[i], i);
 		}
 		return new int[] {-1,-1};
+		
 	}
-	public static int simpleSearch(int[] arr, int k, int skip) {
-		for (int i=0;i<arr.length;i++) {
-			if (i==skip) continue;
-			if (arr[i]==k) return i;
-		}
-		return -1;
-	}
+	
 	public static void print(int[] arr) {
 		System.out.println(Arrays.toString(arr));
 	}
