@@ -10,8 +10,8 @@ public class TwoSum {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = new int[] {2,7,11,15};
-		int[] ans = twoSum(nums, 22);
+		int[] nums = new int[] {3,2,4};
+		int[] ans = twoSum(nums, 6);
 		print(ans);
 	}
 	/*
@@ -21,12 +21,23 @@ public class TwoSum {
 	 *    search in the range (i, last-element]
 	 */
 	public static int[] twoSum(int[] nums, int target) {
-		Arrays.sort(nums); //O(n*log n)
-		for (int i=0; i<nums.length-1; i++) { //O(n*log n)
-			int j = Arrays.binarySearch(nums, i+1, nums.length, target-nums[i]);
-			if (j>0) return new int[] {i,j};
+		int[] help = nums.clone(); //O(n)
+		Arrays.sort(help); //O(n*log n)
+		for (int i=0; i<help.length-1; i++) { //O(n*log n)
+			int j = Arrays.binarySearch(help, i+1, help.length, target-help[i]);
+			if (j>0) {
+				int io = simpleSearch(nums, help[i]);
+				int jo = simpleSearch(nums, help[j]);
+				return new int[] {io,jo};
+			}
 		}
 		return new int[] {-1,-1};
+	}
+	public static int simpleSearch(int[] arr, int k) {
+		for (int i=0;i<arr.length;i++) {
+			if (arr[i]==k) return i;
+		}
+		return -1;
 	}
 	public static void print(int[] arr) {
 		System.out.println(Arrays.toString(arr));
