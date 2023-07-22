@@ -6,7 +6,7 @@ public class LongestSubStringWithoutRepitingChar {
 		// TODO Auto-generated method stub
 		String test = "ahheelo";
 		System.out.println(solution(test));
-		String test2 = "abcabcbb";
+		String test2 = "pwwkew";
 		System.out.println(solution(test2));
 
 	}
@@ -21,6 +21,7 @@ public class LongestSubStringWithoutRepitingChar {
 			} else {
 				if (help.size()>ans) ans = help.size();
 				help = new HashMap<Character, Integer>();
+				help.put(s.charAt(j), 1);
 			}
 		}
 		return ans;
