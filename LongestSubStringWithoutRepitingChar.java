@@ -10,23 +10,26 @@ public class LongestSubStringWithoutRepitingChar {
 		System.out.println(solution(test2));
 		String test3 = "dvdf";
 		System.out.println(solution(test3));
-		// solution not right for test3
 		
 	}
 	
 	public static int solution(String s) {
 		if (s.length()==1) return 1;
-		int ans=0;
+		int ans=0, j=0, start=0;
 		HashMap<Character, Integer> help = new HashMap();
-		for (int j=0; j<s.length();j++) {
-			if (help.get(s.charAt(j))==null) {
-				help.put(s.charAt(j), j);
+		while (j<s.length()) {
+			char c = s.charAt(j);
+			if (help.get(c)==null) {
+				help.put(c, j);
+				j++;
 			} else {
-				if (j-help.get(s.charAt(j))>ans) ans = j-help.get(s.charAt(j));
-//				help = new HashMap<Character, Integer>();
-				help.put(s.charAt(j), 1);
+				if (j-start>ans) ans = j-start;
+				j = help.get(c)+1;
+				start = help.get(c)+1;
+				help = new HashMap();
 			}
 		}
+		if (j-start>ans) ans = j-start;
 		return ans;
 	}
 }
