@@ -1,4 +1,5 @@
-
+import java.util.HashMap;
+import java.util.LinkedList;
 public class LongestPaliSS {
 
 	public static void main(String[] args) {
@@ -6,7 +7,22 @@ public class LongestPaliSS {
 		String test2 = "racecarleveldeifiedradarlevelrepaper";
 		System.out.println(solutionBF(test2));
 //		System.out.println(isPali("!#@!#!!#", 3, 5));
+		System.out.println(charFR(test2));
 		
+	}
+	
+	public static HashMap<Character, LinkedList<Integer>> charFR(String st){
+		HashMap<Character, LinkedList<Integer>> ans = new HashMap();
+		for (int i=0; i<st.length(); i++) {
+			char c = st.charAt(i);
+			if (ans.get(c)==null) {
+				ans.put(c, new LinkedList<Integer>());
+				ans.get(c).add(i);
+			} else {
+				ans.get(c).add(i);
+			}
+		}
+		return ans;
 	}
 	
 	//Helper function if a substring is a palindrome
