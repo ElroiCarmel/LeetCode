@@ -16,7 +16,7 @@ public class ThreeSum {
 		Arrays.sort(nums);
 		int len = nums.length;
 		int i = 0;
-		while (i < len - 2) {
+		while (i < len - 2 && nums[i] <= 0) {
 			int t = -nums[i];
 			// Search for 2-sum
 			int s = i + 1, e = len - 1;
